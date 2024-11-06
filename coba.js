@@ -52,7 +52,7 @@ const main = async () => {
 
     fs.writeFileSync('data/contacts.json', JSON.stringify(contacts));
     
-    console.log('Terima kasih sudah memasukka data dan nomor HP !!');
+    console.log('Terima kasih sudah memasukka data anda!!');
     
     rl.close();
 }
