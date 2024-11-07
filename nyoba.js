@@ -1,28 +1,21 @@
-const fs = require('fs');
-const tes = require('node:fs/promises');
-// console.log(tes);
+const fs = require('node:fs');
 
 
 const readline = require('node:readline');
 const { stdin: input, stdout: output } = require('node:process');
-
 const rl = readline.createInterface({ input, output });
 
-// untuk memanggil module fs.existsSync
-const { existsSync } = 'node:fs';
-
-// Jika folder data nya tidak ada maka akan dibuatkan
-const dirPath = './data';
+//! membuat folder data jika belum ada
+const dirPath = './data'
 if(!fs.existsSync(dirPath)) {
     fs.mkdirSync(dirPath);
 }
 
-// Membuat file json jika belum ada
+//! membuat file JSON jika belum ada
 const dataPath = './data/contacts.json';
 if(!fs.existsSync(dataPath)) {
     fs.writeFileSync(dataPath, '[]', 'utf-8');
 }
-
 
 rl.question('Masukkan nama anda :  ', nama => {
     rl.question('Masukkan nomor hp : ', noHp => {
