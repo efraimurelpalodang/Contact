@@ -3,7 +3,6 @@ const fs = require('node:fs');
 
 const readline = require('node:readline');
 const { stdin: input, stdout: output } = require('node:process');
-const { resolve } = require('node:path');
 const rl = readline.createInterface({ input, output });
 
 //! membuat folder data jika belum ada
