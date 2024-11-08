@@ -4,7 +4,7 @@ const readline = require('node:readline');
 const { stdin: input, stdout: output } = require('node:process');
 const rl = readline.createInterface({ input, output });
 
-//! membuat folder data jika belum ada
+//! membuat folder data jika belum adaa
 const dirPath = './data'
 if(!fs.existsSync(dirPath)) {
     fs.mkdirSync(dirPath);
