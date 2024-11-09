@@ -26,6 +26,9 @@ const simpanKontak = (contact) => {
         return false;
     }
 
+    // cek email mnggunakan module validator
+    
+
     contacts.push(contact);
 
     fs.writeFileSync('data/contacts.json', JSON.stringify(contacts, null, 2));
