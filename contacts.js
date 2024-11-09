@@ -1,5 +1,7 @@
 const fs = require('node:fs');
 const chalk = require('chalk');
+const validator = require('validator');
+const { default: isEmail } = require('validator/lib/isEmail');
 
 //! membuat folder data jika belum adaa
 const dirPath = './data'
@@ -27,13 +29,26 @@ const simpanKontak = (contact) => {
     }
 
     // cek email mnggunakan module validator
-    
+    if(email) {
+        if(!isEmail(email)) {
+            console.log(chalk.red(`Data Gagal ditambahkan, email tidak valid!!`));
+            return false;
+        }
+    }
+
+    // cek nomor handphone mnggunakan module validator
+    if(noHP) {
+        if(!validator.isMobilePhone(noHP,'id-ID')) {
+            console.log(chalk.red(`Data Gagal ditambahkan, nomor Hp tidak valid!!`));
+            return false;
+        }
+    }
 
     contacts.push(contact);
 
     fs.writeFileSync('data/contacts.json', JSON.stringify(contacts, null, 2));
     
-    console.log('Terima kasih sudah memasukka data anda!!');
+    console.log(chalk.greenBright.inverse('Terima kasih sudah memasukka data anda!!'));
 }
 
 // untuk export ke file lain
