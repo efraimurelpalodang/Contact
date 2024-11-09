@@ -1,47 +1,40 @@
+//! memanggil module External
+const {simpanKontak} = require('./contacts')
+
+
 //! mengambil argument dari command line
-const command = process.argv[2];
-// if(command === 'add') {
+const yargs = require("yargs/yargs");
+const { hideBin } = require("yargs/helpers");
+const argv = yargs(hideBin(process.argv));
 
-// } else if (command === 'remove') {
-
-// } else if (command === 'list') {
-
-// }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// const contacts = require('./contacts');
-
-// async function main() {
-//     const nama = await contacts.askQuestion('Masukkan Nama anda');
-//     const email = await contacts.askQuestion('Masukkan Email anda');
-//     const noHp = await contacts.askQuestion('Masukkan Nomor anda');
-
-//     contacts.simpanKontak(nama, email, noHp);
-// }
-
-// main();
+argv.command({
+    command: 'add',
+    describe: 'Menambahkan kontak baru',
+    builder: {
+        nama: {
+            describe: 'Nama Lengkap',
+            demandOption: true,
+            type: 'string'
+        },
+        email: {
+            describe: 'Email',
+            demandOption: false,
+            type: 'string'
+        },
+        noHP: {
+            describe: 'Nomor Handphone',
+            demandOption: true,
+            type: 'string'
+        }
+    },
+    handler(argv) {
+        const contact = {
+            nama: argv.nama,
+            email: argv.email,
+            noHP: argv.noHP,
+        };
+        simpanKontak(contact);
+    }
+})
+.help()
+.argv;
